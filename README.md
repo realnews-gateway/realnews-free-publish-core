@@ -21,4 +21,4 @@ RealNews Gateway is currently in its initial setup phase, focusing on architectu
 Code will be released progressively as development advances.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the GNU Affero General Public License v3.0 (AGPLv3).
