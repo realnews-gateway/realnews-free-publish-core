@@ -133,3 +133,35 @@ realnews-free-publish-core/
 │
 └── .github/
 </pre>
+
+---
+
+## 📅 Roadmap
+
+- Emergency Publishing Channel MVP  
+- VPN Access Layer integration  
+- News Aggregation prototype  
+- Anonymous BBS  
+- Secure Uploader with decentralized storage  
+- NGO/Media deployment toolkit  
+
+See `roadmap/` for details.
+
+---
+
+## 📜 License
+
+This project is licensed under the **GNU AGPLv3**, ensuring that improvements to the software — especially when deployed as a network service — remain open and benefit the public.
+
+---
+
+## 🤝 Collaboration
+
+We welcome collaboration with:
+
+- Independent media organizations  
+- Civil society groups  
+- Researchers and technologists  
+- Digital rights advocates  
+
+Please open an issue or reach out through the organization page.
