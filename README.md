@@ -3,6 +3,7 @@
 ## 🔥 A Censorship‑Resistant Free Publishing Infrastructure
 
 RealNews Free Publish Core is an open-source **information freedom infrastructure** designed to empower individuals in censored environments to safely and reliably **publish** public‑interest content that would otherwise be blocked, deleted, or silenced.
+
 It is designed as a foundational infrastructure for information freedom, not a traditional circumvention tool.
 
 At the heart of the system is a secure, censorship‑resistant **Emergency Publishing Channel** — enabling eyewitness reports, photos, videos, and civic documentation to reach the outside world even under severe censorship.
