@@ -101,6 +101,7 @@ With metadata protection and optional encryption.
 
 ## 🧱 Repository Structure
 
+<pre>
 realnews-free-publish-core/
 ├── README.md
 ├── LICENSE
@@ -131,3 +132,4 @@ realnews-free-publish-core/
 │   └── timeline.md
 │
 └── .github/
+</pre>
