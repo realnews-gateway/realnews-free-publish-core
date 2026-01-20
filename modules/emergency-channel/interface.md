@@ -1,1 +1,91 @@
-The Emergency Publishing Channel interface defines all external and internal APIs used for secure, anonymous, censorship‑resistant content submission. The submission API uses POST /submit with headers Authorization: Bearer <token> and X-Anonymous-ID, and the body includes encrypted payload, type, and timestamp; the server responds with {"status":"ok","submission_id":"<uuid>"} to confirm receipt without linking to user identity. Mirror nodes synchronize content via POST /mirror/sync with node_id and last_sync, receiving a list of encrypted items with submission_id, payload, type, and timestamp. Trusted NGO/media partners retrieve sanitized, verified submissions through GET /distribution/feed with optional since and limit parameters, receiving items containing submission_id, sanitized content, type, mirror list, IPFS CID, and timestamp. Internal interfaces include Sanitizer.strip_metadata and Sanitizer.normalize for metadata removal and format normalization; Router.select_nodes and Router.fallback for multi‑node routing; Storage.store_local, Storage.store_ipfs, and Storage.store_arweave for encrypted storage; and Distributor.push_to_partners and Distributor.update_public_mirrors for distributing content to NGO/media endpoints and public mirrors. All interfaces are designed to preserve anonymity, ensure encrypted handling, support multi‑mirror resilience, and maintain long‑term content survivability.
+
+Emergency Publishing Channel — Interface Specification
+
+This document defines all external and internal interfaces of the Emergency Publishing Channel, including submission APIs, mirror synchronization APIs, NGO/media delivery APIs, and internal module interfaces.
+
+1. Submission API
+
+POST /submit  
+Submit encrypted content for processing.
+
+Headers  
+- Authorization: Bearer <token>  
+- X-Anonymous-ID: <randomized-id>
+
+Body  
+{
+  "payload": "<encrypted-bytes>",
+  "type": "text | image | video | document",
+  "timestamp": "<client-timestamp>"
+}
+
+Response  
+{
+  "status": "ok",
+  "submission_id": "<uuid>"
+}
+
+2. Mirror Sync API
+
+POST /mirror/sync  
+Used by trusted mirror nodes to synchronize new content.
+
+Body  
+{
+  "node_id": "<uuid>",
+  "last_sync": "<timestamp>"
+}
+
+Response  
+{
+  "items": [
+    {
+      "submission_id": "<uuid>",
+      "payload": "<encrypted-bytes>",
+      "type": "text | image | video | document",
+      "timestamp": "<server-timestamp>"
+    }
+  ]
+}
+
+3. NGO / Media Delivery API
+
+GET /distribution/feed  
+Provides sanitized, verified submissions to trusted partners.
+
+Query Parameters  
+- since=<timestamp>  
+- limit=<int>
+
+Response  
+{
+  "items": [
+    {
+      "submission_id": "<uuid>",
+      "content": "<sanitized-content>",
+      "type": "text | image | video | document",
+      "mirrors": ["node-1", "node-3"],
+      "ipfs_cid": "bafy...",
+      "timestamp": "<server-timestamp>"
+    }
+  ]
+}
+
+4. Internal Interfaces
+
+Sanitizer  
+- strip_metadata(content) — Removes EXIF, GPS, device info, timestamps.  
+- normalize(content) — Re-encodes images, transcodes video, cleans text.
+
+Router  
+- select_nodes() — Chooses optimal mirror nodes.  
+- fallback(node) — Fallback routing when primary node fails.
+
+Storage  
+- store_local(content) — Local encrypted storage.  
+- store_ipfs(content) — Stores content on IPFS.  
+- store_arweave(content) — Optional Arweave storage.
+
+Distributor  
+- pushtopartners(content) — Sends sanitized content to NGO/media.  
+- updatepublicmirrors(content) — Updates public mirror sites.
