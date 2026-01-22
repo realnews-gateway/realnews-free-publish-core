@@ -164,3 +164,38 @@ The Processing Pipeline enforces strict resource controls to prevent denial‑of
 - No partial results may be returned.
 - The sandbox is destroyed immediately after termination.
 
+## Security Notes
+
+The Processing Pipeline enforces strict security guarantees to ensure that no sensitive information is introduced, inferred, or leaked during processing. All operations must preserve anonymity and maintain deterministic behavior.
+
+### 1. No Identity Inference
+- The pipeline must never infer user identity, origin, or device characteristics.
+- Classification and enrichment rely solely on sanitized structural features.
+- Behavioral, stylistic, or linguistic fingerprinting is strictly prohibited.
+
+### 2. Deterministic Processing
+- All transformations must be deterministic and reproducible.
+- Identical sanitized inputs must always produce identical processed outputs.
+- Randomized algorithms, adaptive heuristics, or ML‑based inference are not allowed.
+
+### 3. Zero Metadata Introduction
+- The pipeline must not introduce any metadata that could reveal timing, location, or user behavior.
+- Routing metadata must be minimal, non‑sensitive, and standardized.
+- All timestamps must be server‑generated and normalized.
+
+### 4. Isolation from Raw Content
+- The pipeline never receives raw, unsanitized content.
+- All inputs must originate from the Sanitizer module.
+- Any attempt to bypass sanitization triggers immediate rejection.
+
+### 5. Minimal Logging
+- Logs may contain only anonymized operational metrics.
+- No content, hashes, or derived metadata may be logged.
+- Logs must be purgeable and non‑persistent in hostile environments.
+
+### 6. Defense Against Correlation Attacks
+- Deduplication hashes must be anonymized and non‑reversible.
+- Derived metadata must not enable cross‑submission correlation.
+- Processing reports must exclude any sensitive or identifying information.
+
+These safeguards ensure that the Processing Pipeline maintains strong anonymity guarantees and prepares content safely for downstream distribution.
