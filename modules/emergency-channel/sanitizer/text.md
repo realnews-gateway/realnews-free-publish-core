@@ -125,3 +125,72 @@ The sanitizer is optimized for:
 
 It must handle large volumes of text without blocking the pipeline.
 
+---
+
+## 4. Security Considerations
+
+The Text Sanitizer is a critical security boundary.  
+It must defend the Emergency Channel against malformed, malicious, or intentionally crafted inputs.
+
+### 4.1 Threat Model
+
+The sanitizer protects against:
+
+- Script injection (XSS, JS payloads)  
+- HTML/Markdown injection  
+- Unicode-based attacks (homoglyphs, RTL overrides)  
+- Hidden control characters  
+- Oversized payloads intended to exhaust resources  
+- Embedded phishing or malicious URLs  
+
+The sanitizer assumes all incoming text is untrusted.
+
+---
+
+### 4.2 Allowed and Disallowed Content
+
+**Allowed:**
+
+- Plain text  
+- Basic Markdown  
+- Safe HTML subsets  
+- UTF‑8 encoded characters  
+- Standard punctuation and whitespace  
+
+**Disallowed:**
+
+- Executable scripts  
+- Inline event handlers (e.g., `onclick=`)  
+- Iframes, embeds, or external scripts  
+- Obfuscated or encoded payloads  
+- Binary or mixed‑format text  
+
+Disallowed content is removed or the entire submission is rejected.
+
+---
+
+### 4.3 Logging and Auditing
+
+The sanitizer logs:
+
+- Rejected submissions  
+- Sanitization errors  
+- Metadata extraction failures  
+- Policy violations  
+- Suspicious patterns  
+
+Logs are anonymized and used for analytics, debugging, and threat detection.
+
+---
+
+## 5. Summary
+
+The Text Sanitizer ensures that all textual content entering the Emergency Channel is:
+
+- Safe  
+- Clean  
+- Deterministic  
+- Policy‑compliant  
+- Ready for routing, storage, and distribution  
+
+It is the foundation of content safety and reliability across the entire system.
