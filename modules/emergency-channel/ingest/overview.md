@@ -28,3 +28,69 @@ The Ingest module is responsible for:
 
 - **Forwarding to Sanitizer**  
   Passing normalized content to the Sanitizer module for deep cleaning and verification.
+
+---
+
+## Non‑Responsibilities
+
+The Ingest module does **not** perform:
+
+- Deep sanitization  
+- Deduplication  
+- Classification  
+- Routing  
+- Storage  
+- Distribution  
+
+These responsibilities belong to downstream modules such as Sanitizer, Core, Router, Storage, and Distributor.
+
+---
+
+## Supported Ingestion Sources
+
+The module supports multiple intake channels:
+
+- User submissions  
+- Automated crawlers  
+- Partner or institutional feeds  
+- Mirror nodes  
+- Opportunistic or fallback sources  
+
+Each source type has its own validation rules and trust boundaries.
+
+---
+
+## Trust Model
+
+The Ingest module operates at the lowest trust level:
+
+- All incoming content is considered untrusted  
+- No assumptions about source reliability  
+- Validation and normalization occur before any internal processing  
+- Sensitive metadata is stripped or minimized  
+
+This ensures that malicious or malformed content cannot compromise the system.
+
+---
+
+## Integration with the Pipeline
+
+The Ingest module is the first stage of the Emergency Channel pipeline:
+
+````markdown
+Ingest → Sanitizer → Core → Router → Distributor → Publisher  
+                     ↘ Storage
+
+---
+
+## Summary
+
+The Ingest module provides:
+
+- A secure and reliable entry point for raw content  
+- Early validation and normalization  
+- Strong trust boundaries  
+- Extensibility for diverse ingestion sources  
+- Seamless integration with the Sanitizer module  
+
+It ensures that all content entering the Emergency Channel is handled safely and consistently.
