@@ -29,3 +29,51 @@ Fallback is activated when any of the following conditions occur:
   Scheduled probes indicate that a channel is unhealthy.
 
 Fallback triggers are logged for later analysis but do not interrupt the publishing pipeline.
+
+---
+
+## Fallback Strategies
+
+The Publisher module supports multiple fallback strategies:
+
+### 1. Channel Switching
+Automatically switches from a primary channel (e.g., HTML publishing) to an alternative channel (e.g., RSS, JSON API, IPFS).
+
+### 2. Multi-Channel Broadcasting
+Delivers content through several channels simultaneously to maximize reach.
+
+### 3. Minimal Payload Mode
+Generates a text-only micro-feed optimized for extreme censorship environments.
+
+### 4. Opportunistic Delivery
+Attempts delivery when temporary network windows appear, useful in unstable or high-risk regions.
+
+### 5. Offline Export
+Packages content into bundles that can be distributed manually or through offline networks.
+
+---
+
+## Health Checks
+
+The fallback system relies on continuous health monitoring:
+
+- Periodic channel probes  
+- Latency and error-rate tracking  
+- TLS handshake anomaly detection  
+- Endpoint availability checks  
+
+Health data is used to determine when to switch channels or degrade gracefully.
+
+---
+
+## Summary
+
+The fallback subsystem ensures:
+
+- High reliability under adverse network conditions  
+- Automatic recovery from channel failures  
+- Multiple redundant delivery paths  
+- Compatibility with both online and offline environments  
+- Strong resilience against censorship and interference  
+
+It guarantees that verified content reaches users even when the network is hostile or unstable.
