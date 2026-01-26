@@ -77,10 +77,10 @@ This ensures that malicious or malformed content cannot compromise the system.
 
 The Ingest module is the first stage of the Emergency Channel pipeline:
 
-````markdown
 Ingest → Sanitizer → Core → Router → Distributor → Publisher  
                      ↘ Storage
 
+---
 
 ## Summary
 
