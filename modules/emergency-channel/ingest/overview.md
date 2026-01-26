@@ -81,7 +81,6 @@ The Ingest module is the first stage of the Emergency Channel pipeline:
 Ingest → Sanitizer → Core → Router → Distributor → Publisher  
                      ↘ Storage
 
----
 
 ## Summary
 
